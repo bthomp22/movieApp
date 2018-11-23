@@ -25,13 +25,19 @@ function getResultHtml(result) {
   console.log('displayResult', result);
   return `
     <div>
-      <h2></h2>
-    </div> 
+      
+      <p>similar: <span class="js-similar">${result.Similar.Results}</span></p>
+      
+    </div>
   `;
 }
+function displayResults(data) {
+ 
  const searchResults = data.items.map((item, index) => getResultHtml(item));
- console.log('displayYoutubeSearchResults', searchResults);
+ console.log('displayResults', searchResults);
  $('.js-search-results').html(searchResults).prop('hidden', false);
+}
+
   
  
 
@@ -44,8 +50,8 @@ function watchSubmit() {
     
     queryTarget.val(""); // empty search field
 
-    getDataTasteDiveAPI(queryTerm); // function call
-    displaySearchResults();
+    getDataTasteDiveAPI(queryTerm, displayResults); // function call
+    
   });
 }
 
